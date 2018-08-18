@@ -1,8 +1,8 @@
-set nocompatible  " be iMproved, required
-filetype off  " required
+set nocompatible  
+filetype off  
 set exrc
 set showcmd
-set shell=/bin/bash
+set shell=/bin/zsh
 set nowrap
 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -41,6 +41,7 @@ Plugin 'kien/ctrlp.vim'
 
 " ==== snippets
 Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 " Status bar on bottom
 Plugin 'bling/vim-airline'
@@ -51,14 +52,18 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'flazz/vim-colorschemes'
 "Plugin 'Badacadabra/vim-archery' i find them boring for now.
 
+" Sessions
+Plugin 'xolox/vim-session'
+Plugin 'xolox/vim-misc'
+
 call vundle#end()
 filetype plugin indent on
 
 " ==== Colors and other basic settings
-colorscheme monokai\-chris
+colorscheme minimalist
 "set guifont=Ubuntu\ Mono\ 11
 "set guifont=Space\ Mono\ for\ Powerline\ 10
-set fillchars+=vert:\$
+set fillchars+=vert:\|
 syntax enable
 set background=dark
 set ruler
@@ -70,6 +75,7 @@ set st=4 sw=4 et
 set shiftwidth=4
 set tabstop=3
 let &colorcolumn="80"
+set t_Co=256
 ":set guioptions-=m  "remove menu bar
 ":set guioptions-=T  "remove toolbar
 ":set guioptions-=r  "remove right-hand scroll bar
@@ -83,6 +89,7 @@ let NERDTreeIgnore = ['__pycache__', '\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp',
 let NERDTreeShowHidden=1
 let g:NERDTreeWinPos="left"
 let g:NERDTreeDirArrows=0
+let NERDTreeQuitOnOpen=0 
 map <C-t> :NERDTreeToggle<CR>
 
 " ==== Syntastic
@@ -105,12 +112,22 @@ nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 " === flake8
 let g:flake8_show_in_file=1
 
+" === YCM
+let g:ycm_key_list_select_completion=[]
+let g:ycm_key_list_previous_completion=[]
+
+
+
 " ==== snippets
-let g:UltiSnipsExpandTrigger="<A-ENTER>"
-let g:UltiSnipsJumpForwardTrigger="<A-ENTER>"
-let g:UltiSnipsJumpBackwardTrigger="<A-BACKSPACE>"
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsListSnippets="<c-l>"
+"let g:UltiSnipsJumpForwardTrigger="<c-y>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-h>"
+"let g:UltiSnipsExpandTrigger="<C-ENTER>"
+"let g:UltiSnipsJumpForwardTrigger="<A-ENTER>"
+"let g:UltiSnipsJumpBackwardTrigger="<A-BACKSPACE>"
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+"let g:UltiSnipsEditSplit="vertical"
 
 " === Airline
 let g:airline_powerline_fonts = 1
@@ -118,6 +135,10 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_detect_modified=1
 
+" === Session
+let g:session_autosave = 'no'
+let g:session_autoload = 'yes'
+nnoremap <leader>S :SaveSession<CR>
 
 " ==== Easymotion
 let g:EasyMotion_do_mapping = 1
@@ -141,7 +162,7 @@ nmap <silent> <A-Right> :wincmd l<CR>
 "My mappings
 nnoremap <leader>ev <esc>:vsplit $MYVIMRC<cr>
 nnoremap <leader>qv <esc>:w<cr>:source $MYVIMRC<cr>
-nnoremap <Ctrl-i> <Ctrl-A> 
+nnoremap <C-i> <C-A> 
 
 " ==== disable swap file warning
 set shortmess+=A
