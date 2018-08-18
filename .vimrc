@@ -116,19 +116,6 @@ let g:flake8_show_in_file=1
 let g:ycm_key_list_select_completion=[]
 let g:ycm_key_list_previous_completion=[]
 
-
-
-" ==== snippets
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsListSnippets="<c-l>"
-"let g:UltiSnipsJumpForwardTrigger="<c-y>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-h>"
-"let g:UltiSnipsExpandTrigger="<C-ENTER>"
-"let g:UltiSnipsJumpForwardTrigger="<A-ENTER>"
-"let g:UltiSnipsJumpBackwardTrigger="<A-BACKSPACE>"
-" If you want :UltiSnipsEdit to split your window.
-"let g:UltiSnipsEditSplit="vertical"
-
 " === Airline
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
