@@ -1,9 +1,13 @@
 set nocompatible  
-filetype off  
+"filetype off
+filetype plugin on
+syntax on
 set exrc
 set showcmd
 set shell=/bin/zsh
 set nowrap
+
+set formatoptions-=cro  " Annoying ass comment added after new line.
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -56,11 +60,14 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'xolox/vim-session'
 Plugin 'xolox/vim-misc'
 
+" LATEX
+Plugin 'xuhdev/vim-latex-live-preview'
+
 call vundle#end()
 filetype plugin indent on
 
 " ==== Colors and other basic settings
-colorscheme minimalist
+colorscheme gruvbox
 "set guifont=Ubuntu\ Mono\ 11
 "set guifont=Space\ Mono\ for\ Powerline\ 10
 set fillchars+=vert:\|
@@ -73,7 +80,7 @@ set laststatus=2
 set smartindent
 set st=4 sw=4 et
 set shiftwidth=4
-set tabstop=3
+set tabstop=4
 let &colorcolumn="80"
 set t_Co=256
 ":set guioptions-=m  "remove menu bar
@@ -136,20 +143,31 @@ nmap <Leader>b <Plug>(easymotion-b)
 nmap <Leader>B <Plug>(easymotion-B)
 nmap <Leader>e <Plug>(easymotion-e)
 nmap <Leader>E <Plug>(easymotion-E)
-nmap <Leader>j <Plug>(easymotion-j)
-nmap <Leader>k <Plug>(easymotion-k)
+"nmap <Leader>j <Plug>(easymotion-j)
+"nmap <Leader>k <Plug>(easymotion-k)
 nmap <Leader>s <Plug>(easymotion-sn)
 
 " ==== moving around
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
+nmap <silent> <leader>k :wincmd k<CR>
+nmap <silent> <leader>j :wincmd j<CR>
+nmap <silent> <leader>h :wincmd h<CR>
+nmap <silent> <leader>l :wincmd l<CR>
 
 "My mappings
 nnoremap <leader>ev <esc>:vsplit $MYVIMRC<cr>
 nnoremap <leader>qv <esc>:w<cr>:source $MYVIMRC<cr>
-nnoremap <C-i> <C-A> 
+nnoremap > <esc><C-w>>
+nnoremap < <esc><C-w><
+nnoremap <leader>> >>
+nnoremap <leader>< <<
+
+" Open Man with word under cursor in horizontal split
+map <leader>z <Plug>(Man)
+" Open Man with word under cursor in vertival split
+map <leader>v <Plug>(Vman)
+
+" nnoremap <C-i> <C-A>
+" autocmd FileType c nnoremap X
 
 " ==== disable swap file warning
 set shortmess+=A
