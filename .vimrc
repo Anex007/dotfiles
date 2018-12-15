@@ -7,7 +7,8 @@ set showcmd
 set shell=/bin/zsh
 set nowrap
 
-set formatoptions-=cro  " Annoying ass comment added after new line.
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Annoying ass comment added after new line.
+set splitbelow splitright
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -15,14 +16,8 @@ call vundle#begin()
 " ==== plugin manager
 Plugin 'VundleVim/Vundle.vim'
 
-" ==== helpers
-Plugin 'vim-scripts/L9'
-
 " ==== File tree
 Plugin 'scrooloose/nerdtree'
-
-" ==== Completion
-Plugin 'Valloric/YouCompleteMe'
 
 " ==== Git
 Plugin 'airblade/vim-gitgutter'
@@ -119,15 +114,14 @@ nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 " === flake8
 let g:flake8_show_in_file=1
 
-" === YCM
-let g:ycm_key_list_select_completion=[]
-let g:ycm_key_list_previous_completion=[]
-
 " === Airline
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_detect_modified=1
+
+" === UltiSnips
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 
 " === Session
 let g:session_autosave = 'no'
@@ -156,18 +150,31 @@ nmap <silent> <leader>l :wincmd l<CR>
 "My mappings
 nnoremap <leader>ev <esc>:vsplit $MYVIMRC<cr>
 nnoremap <leader>qv <esc>:w<cr>:source $MYVIMRC<cr>
+nnoremap <C-s> :w<CR>
 nnoremap > <esc><C-w>>
 nnoremap < <esc><C-w><
 nnoremap <leader>> >>
 nnoremap <leader>< <<
+nnoremap <leader>o o<ESC>k
+nnoremap <leader>O O<ESC>j
+" autocomplete with shift+tab
+" Check out :help ins-completion
+inoremap <S-Tab> <C-n>
+nnoremap <C-f> :!ctags -R .<CR>
 
 " Open Man with word under cursor in horizontal split
 map <leader>z <Plug>(Man)
 " Open Man with word under cursor in vertival split
 map <leader>v <Plug>(Vman)
 
-" nnoremap <C-i> <C-A>
-" autocmd FileType c nnoremap X
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
 
 " ==== disable swap file warning
 set shortmess+=A
