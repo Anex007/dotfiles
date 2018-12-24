@@ -49,6 +49,7 @@ Plugin 'vim-airline/vim-airline-themes'
 " ==== PLUGIN THEMES
 "Plugin 'morhetz/gruvbox'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'luochen1990/rainbow'
 "Plugin 'Badacadabra/vim-archery' i find them boring for now.
 
 " Sessions
@@ -127,6 +128,9 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 let g:session_autosave = 'no'
 let g:session_autoload = 'yes'
 nnoremap <leader>S :SaveSession<CR>
+
+" === Rainbow
+let g:rainbow_active = 1
 
 " ==== Easymotion
 let g:EasyMotion_do_mapping = 1
