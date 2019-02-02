@@ -1,0 +1,14 @@
+! URxvt
+URxvt.font: xft:Hack:size=9
+URxvt.scrollBar: false
+
+URxvt.perl-ext-common: default,matcher,resize-font
+
+! Matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+
+! resize-font
+URxvt.keysym.C-minus:     resize-font:smaller
+URxvt.keysym.C-plus:      resize-font:bigger
+URxvt.keysym.C-equal:     resize-font:reset
