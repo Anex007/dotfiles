@@ -47,6 +47,8 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'sheerun/vim-polyglot'
+" Tags for c++ and others
+Plugin 'majutsushi/tagbar'
 
 " ==== moving / searching
 Plugin 'easymotion/vim-easymotion'
@@ -72,14 +74,14 @@ Plugin 'xolox/vim-session'
 Plugin 'xolox/vim-misc'
 
 " LATEX
-Plugin 'xuhdev/vim-latex-live-preview'
+" Plugin 'xuhdev/vim-latex-live-preview'
 
 call vundle#end()
 filetype plugin indent on
 filetype on
 
 " ==== Colors and other basic settings
-colorscheme cobalt2
+colorscheme gruvbox
 "set guifont=Ubuntu\ Mono\ 11
 "set guifont=Space\ Mono\ for\ Powerline\ 10
 set fillchars+=vert:\|
@@ -100,7 +102,9 @@ set t_Co=256
 ":set guioptions-=r  "remove right-hand scroll bar
 ":set guioptions-=L  "remove left-hand scroll bar
 ":set lines=99 columns=300
+set cursorline
 set relativenumber
+set tags+=~/.config/nvim/systags
 
 " ==== NERDTREE
 let NERDTreeIgnore = ['__pycache__', '\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp', '*\.swp', '\.swo', '\.swn', '\.swh', '\.swm', '\.swl', '\.swk', '\.sw*$', '[a-zA-Z]*egg[a-zA-Z]*', '.DS_Store']
@@ -110,6 +114,9 @@ let g:NERDTreeWinPos="left"
 let g:NERDTreeDirArrows=0
 let NERDTreeQuitOnOpen=0 
 map <C-t> :NERDTreeToggle<CR>
+
+" ==== Tagbar
+nnoremap <C-c> :TagbarToggle<CR>
 
 " ==== Syntastic
 let g:syntastic_always_populate_loc_list = 1
@@ -132,10 +139,18 @@ nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 let g:flake8_show_in_file=1
 
 " === Airline
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_detect_modified=1
+" Set the theme for airline
+let g:airline_theme='deus'
 
 " === UltiSnips
 " let g:UltiSnipsSnippetDirectories=['/home/ezio/.config/nvim/UltiSnips/']
@@ -188,7 +203,11 @@ nnoremap <leader>O O<ESC>j
 " autocomplete with shift+tab
 " Check out :help ins-completion
 inoremap <S-Tab> <C-n>
-nnoremap <C-f> :!ctags -R .<CR>
+inoremap <C-t> <C-x><C-]>
+nnoremap <C-f> <C-x><C-f>
+nnoremap <C-f> :!ctags -R .<CR><CR>
+tnoremap <Esc> <C-\><C-n>
+
 
 " Open Man with word under cursor in horizontal split
 map <leader>z <Plug>(Man)
