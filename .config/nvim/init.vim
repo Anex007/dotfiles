@@ -1,11 +1,11 @@
-"  _   _         __     ___           
-" | \ | | ___  __\ \   / (_)_ __ ___  
-" |  \| |/ _ \/ _ \ \ / /| | '_ ` _ \ 
+"  _   _         __     ___
+" | \ | | ___  __\ \   / (_)_ __ ___
+" |  \| |/ _ \/ _ \ \ / /| | '_ ` _ \
 " | |\  |  __/ (_) \ V / | | | | | | |
 " |_| \_|\___|\___/ \_/  |_|_| |_| |_|
 " My Neovim config
 
-set nocompatible  
+set nocompatible
 filetype off
 "filetype plugin on
 syntax on
@@ -52,7 +52,7 @@ Plugin 'majutsushi/tagbar'
 
 " ==== moving / searching
 Plugin 'easymotion/vim-easymotion'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " ==== snippets
 Plugin 'SirVer/ultisnips'
@@ -73,15 +73,24 @@ Plugin 'dylanaraps/wal.vim'
 Plugin 'xolox/vim-session'
 Plugin 'xolox/vim-misc'
 
+" Utils
+Plugin 'vim-utils/vim-man'
+" Devicons
+Plugin 'ryanoasis/vim-devicons'
+
 " LATEX
 " Plugin 'xuhdev/vim-latex-live-preview'
+
+" Cool stuff to drag visual block accross the screeen
+Plugin 'shinokada/dragvisuals.vim'
 
 call vundle#end()
 filetype plugin indent on
 filetype on
 
 " ==== Colors and other basic settings
-colorscheme gruvbox
+colorscheme codedark	" Perfect with AirlineTheme violet
+" colorscheme PaperColor	" Perfect with AirlineTheme badwolf
 "set guifont=Ubuntu\ Mono\ 11
 "set guifont=Space\ Mono\ for\ Powerline\ 10
 set fillchars+=vert:\|
@@ -112,7 +121,7 @@ let NERDTreeIgnore = ['__pycache__', '\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp',
 let NERDTreeShowHidden=1
 let g:NERDTreeWinPos="left"
 let g:NERDTreeDirArrows=0
-let NERDTreeQuitOnOpen=0 
+let NERDTreeQuitOnOpen=0
 map <C-t> :NERDTreeToggle<CR>
 
 " ==== Tagbar
@@ -128,7 +137,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_mri_args = "--config=$HOME/.jshintrc"
-let g:syntastic_python_checkers = [ 'pylint', 'flake8', 'pep8', 'pyflakes', 'python'] 
+let g:syntastic_python_checkers = [ 'pylint', 'flake8', 'pep8', 'pyflakes', 'python']
 let g:syntastic_yaml_checkers = ['jsyaml']
 let g:syntastic_html_tidy_exec = 'tidy5'
 " This check was becoming more annoying so i added these 2 lines :P
@@ -145,12 +154,13 @@ endif
 let g:airline_symbols.space = "\ua0"
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_detect_modified=1
 " Set the theme for airline
-let g:airline_theme='deus'
+let g:airline_theme='violet'
 
 " === UltiSnips
 " let g:UltiSnipsSnippetDirectories=['/home/ezio/.config/nvim/UltiSnips/']
@@ -179,8 +189,15 @@ nmap <Leader>E <Plug>(easymotion-E)
 "nmap <Leader>k <Plug>(easymotion-k)
 nmap <Leader>s <Plug>(easymotion-sn)
 
+" dragvisuals.vim
+vmap  <expr>  <LEFT>   DVB_Drag('left')
+vmap  <expr>  <RIGHT>  DVB_Drag('right')
+vmap  <expr>  <DOWN>   DVB_Drag('down')
+vmap  <expr>  <UP>     DVB_Drag('up')
+vmap  <expr>  D        DVB_Duplicate()
+
 "My mappings
-nnoremap <leader>ev <esc>:vsplit $MYVIMRC<cr>
+nnoremap <leader>ev <esc>:tabe $MYVIMRC<cr>
 nnoremap <leader>qv <esc>:w<cr>:source $MYVIMRC<cr>
 inoremap <C-s> <esc>:w<CR>
 nnoremap <C-s> :w<CR>
@@ -200,6 +217,7 @@ inoremap <Up> <esc><C-w>ki
 inoremap <Down> <esc><C-w>ji
 nnoremap <leader>o o<ESC>k
 nnoremap <leader>O O<ESC>j
+nnoremap ; :
 " autocomplete with shift+tab
 " Check out :help ins-completion
 inoremap <S-Tab> <C-n>
@@ -213,6 +231,14 @@ tnoremap <Esc> <C-\><C-n>
 map <leader>z <Plug>(Man)
 " Open Man with word under cursor in vertival split
 map <leader>v <Plug>(Vman)
+
+autocmd BufWrite *.* call RemoveTrailigWhitespace()
+
+function! RemoveTrailigWhitespace()
+	normal! mm
+	%s/\s\+$//e
+	normal! 'm
+endfunction
 
 " ==== disable swap file warning
 set shortmess+=A
