@@ -4,6 +4,7 @@
 " | |\  |  __/ (_) \ V / | | | | | | |
 " |_| \_|\___|\___/ \_/  |_|_| |_| |_|
 " My Neovim config
+" Look up: https://github.com/xolox/vim-notes
 
 set nocompatible
 filetype off
@@ -83,13 +84,15 @@ Plugin 'ryanoasis/vim-devicons'
 
 " Cool stuff to drag visual block accross the screeen
 Plugin 'shinokada/dragvisuals.vim'
+Plugin 'godlygeek/tabular'	" Tabs certain stuff based on patterns `Tabular \=`
 
 call vundle#end()
 filetype plugin indent on
 filetype on
 
 " ==== Colors and other basic settings
-colorscheme codedark	" Perfect with AirlineTheme violet
+colorscheme monokain	" Perfect with AirlineTheme jellybeans
+" colorscheme codedark	" Perfect with AirlineTheme violet
 " colorscheme PaperColor	" Perfect with AirlineTheme badwolf
 "set guifont=Ubuntu\ Mono\ 11
 "set guifont=Space\ Mono\ for\ Powerline\ 10
@@ -160,7 +163,7 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_detect_modified=1
 " Set the theme for airline
-let g:airline_theme='violet'
+let g:airline_theme='jellybeans'
 
 " === UltiSnips
 " let g:UltiSnipsSnippetDirectories=['/home/ezio/.config/nvim/UltiSnips/']
@@ -220,7 +223,11 @@ nnoremap <leader>O O<ESC>j
 nnoremap ; :
 " autocomplete with shift+tab
 " Check out :help ins-completion
+" TODO: Add C-] for jumping to definition of ctags and C-o for jumping back
+" Jump to definition
+nnoremap <C-d>	<C-]>
 inoremap <S-Tab> <C-n>
+nnoremap <S-Tab> <C-o>
 inoremap <C-t> <C-x><C-]>
 nnoremap <C-f> <C-x><C-f>
 nnoremap <C-f> :!ctags -R .<CR><CR>
@@ -232,11 +239,11 @@ map <leader>z <Plug>(Man)
 " Open Man with word under cursor in vertival split
 map <leader>v <Plug>(Vman)
 
-autocmd BufWrite *.* call RemoveTrailigWhitespace()
+autocmd BufWrite * call RemoveTrailigWhitespace()
 
 function! RemoveTrailigWhitespace()
 	normal! mm
-	%s/\s\+$//e
+	%s/\s\+$//eg
 	normal! 'm
 endfunction
 
