@@ -92,7 +92,7 @@ label = %title:0:40:...%
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-label-layout = 
+label-layout =
 
 label-indicator-padding = 2
 label-indicator-margin = 1
@@ -119,9 +119,9 @@ wrapping-scroll = false
 ;pin-workspaces = true
 
 ws-icon-0 = "1;"
-ws-icon-1 = "2;"
+ws-icon-1 = "2;"
 ws-icon-2 = "3;"
-ws-icon-3 = "4;"
+ws-icon-3 = "4;"
 ws-icon-4 = "5;"
 ws-icon-5 = "6;"
 ws-icon-default = 
@@ -221,11 +221,11 @@ date = "%m/%d/%y"
 date-alt = "%c"
 
 time = %I:%M %p
-time-alt = 
+time-alt =
 
 format = %{F#e6b3ff}%{F-} <label>
 
-label = %time% %date% 
+label = %time% %date%
 
 [module/alsa]
 type = internal/alsa

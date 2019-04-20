@@ -13,7 +13,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
-set $term urxvt
+set $term st
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -34,7 +34,7 @@ font pango:Roboto-Medium 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec $term
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -60,13 +60,20 @@ for_window [instance="dropdown_*"] move position center
 # Custom commands
 bindsym $mod+m exec --no-startup-id mpd
 bindsym $mod+Shift+m exec --no-startup-id mpd --kill
+bindsym $mod+u exec --no-startup-id $HOME/scripts/usb-mounter.sh
+bindsym $mod+Shift+u exec --no-startup-id /home/ezio/scripts/usb-umounter.sh
 bindsym $mod+w exec --no-startup-id /home/ezio/scripts/waller.sh -n
 bindsym $mod+Shift+w exec --no-startup-id /home/ezio/scripts/waller.sh -p
+bindsym $mod+Shift+v exec --no-startup-id /home/ezio/scripts/copyToClip.sh
 
 bindsym $mod+c [instance="dropdown_term"] scratchpad show; [instance="dropdown_term"] move position center
 bindsym $mod+x [instance="dropdown_calc"] scratchpad show; [instance="dropdown_calc"] move position center
 
-# Porno mode, thanks luke papi
+# bindsym $mod+Shift+x exec --no-startup-id slock
+bindsym $mod+Tab exec --no-startup-id rofi -show
+bindsym $mod+Shift+x exec slock
+
+# Porno mode, thanks luke papi ;)
 # NOTE: if you have a multi monitor setup like me this would only change the focused workspace
 # TODO: Fix this issue
 bindsym $mod+p workspace sec, exec --no-startup-id amixer set Master mute, exec --no-startup-id $term -e top, exec --no-startup-id $term -e sudo xbps-install -Su
@@ -197,7 +204,8 @@ bindsym XF86AudioPrev exec --no-startup-id mpc prev
 #         status_command i3status
 # }
 exec_always --no-startup-id compton
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id $HOME/scripts/waller.sh -n
-exec --no-startup-id $term -name dropdown_term
-exec --no-startup-id $term -name dropdown_calc -e calc
+exec_always --no-startup-id $HOME/scripts/startup
+exec_always --no-startup-id /home/ezio/.config/polybar/launch.sh
+exec_always --no-startup-id /home/ezio/scripts/waller.sh -n
+exec --no-startup-id $term -n dropdown_term
+exec --no-startup-id $term -n dropdown_calc -e calc
