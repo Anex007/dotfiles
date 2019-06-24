@@ -18,8 +18,10 @@
 
 [colors]
 ; background = #4d0039
-background = #330033
-background-alt = #990066
+;background = #330033
+;background-alt = #990066
+background= #aa001a4d
+background-alt = #330066
 foreground = #ffffcc
 foreground-alt = #555
 primary = #ffb52a
@@ -52,11 +54,14 @@ module-margin-left = 1
 module-margin-right = 2
 
 font-0 = "Fantasque Sans Mono:size=11;1"
+;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+;font-2 = siji:pixelsize=10;1
+;font-1 = "Font Awesome 5 Free:size=10;2"
 font-1 = "MaterialIcons:size=10;2"
 
 modules-left = i3
 modules-center = mpd xwindow
-modules-right = date
+modules-right = btc-price date
 
 tray-position = right
 tray-padding = 2
@@ -200,12 +205,22 @@ label-connected =  %upspeed%  %downspeed%
 
 label-disconnected = 
 label-disconnected-foreground = #ff4d4d
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/simple-weather]
 type = custom/script
 exec = ~/.config/polybar/openweathermap-simple.sh
 interval = 3600
 label = %{F#ff9933}%{F-} %output:3%
+
+[module/btc-price]
+type = custom/script
+exec = ~/.config/polybar/getbtc.sh
+interval = 200
+label = "%{F#00802b} %output:6%"
 
 [module/event-notify]
 type = custom/script
