@@ -50,6 +50,7 @@ Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'sheerun/vim-polyglot'
 " Tags for c++ and others
 Plugin 'majutsushi/tagbar'
+"Plugin 'ziglang/zig.vim'
 
 " ==== moving / searching
 Plugin 'easymotion/vim-easymotion'
@@ -83,7 +84,7 @@ Plugin 'ryanoasis/vim-devicons'
 " Plugin 'xuhdev/vim-latex-live-preview'
 
 " Cool stuff to drag visual block accross the screeen
-Plugin 'shinokada/dragvisuals.vim'
+"Plugin 'shinokada/dragvisuals.vim'
 Plugin 'godlygeek/tabular'	" Tabs certain stuff based on patterns `Tabular \=`
 
 call vundle#end()
@@ -91,9 +92,12 @@ filetype plugin indent on
 filetype on
 
 " ==== Colors and other basic settings
-colorscheme monokain	" Perfect with AirlineTheme jellybeans
+" colorscheme monokain	" Perfect with AirlineTheme jellybeans
 " colorscheme codedark	" Perfect with AirlineTheme violet
 " colorscheme PaperColor	" Perfect with AirlineTheme badwolf
+" ********* RETARD ALERT !!!! ***********
+" You can use `colorscheme wal` and `AirlineTheme wal` to have a unified look
+colorscheme wal
 "set guifont=Ubuntu\ Mono\ 11
 "set guifont=Space\ Mono\ for\ Powerline\ 10
 set fillchars+=vert:\|
@@ -114,7 +118,7 @@ set t_Co=256
 ":set guioptions-=r  "remove right-hand scroll bar
 ":set guioptions-=L  "remove left-hand scroll bar
 ":set lines=99 columns=300
-set cursorline
+"set cursorline
 set relativenumber
 set tags+=~/.config/nvim/systags
 
@@ -147,6 +151,9 @@ let g:syntastic_html_tidy_exec = 'tidy5'
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 
+" === zig
+"autocmd BufRead,BufNewFile *.zig set filetype=zig
+
 " === flake8
 let g:flake8_show_in_file=1
 
@@ -163,7 +170,7 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_detect_modified=1
 " Set the theme for airline
-let g:airline_theme='jellybeans'
+let g:airline_theme='wal'
 
 " === UltiSnips
 " let g:UltiSnipsSnippetDirectories=['/home/ezio/.config/nvim/UltiSnips/']
@@ -193,11 +200,11 @@ nmap <Leader>E <Plug>(easymotion-E)
 nmap <Leader>s <Plug>(easymotion-sn)
 
 " dragvisuals.vim
-vmap  <expr>  <LEFT>   DVB_Drag('left')
-vmap  <expr>  <RIGHT>  DVB_Drag('right')
-vmap  <expr>  <DOWN>   DVB_Drag('down')
-vmap  <expr>  <UP>     DVB_Drag('up')
-vmap  <expr>  D        DVB_Duplicate()
+"vmap  <expr>  <LEFT>   DVB_Drag('left')
+"vmap  <expr>  <RIGHT>  DVB_Drag('right')
+"vmap  <expr>  <DOWN>   DVB_Drag('down')
+"vmap  <expr>  <UP>     DVB_Drag('up')
+"vmap  <expr>  D        DVB_Duplicate()
 
 "My mappings
 nnoremap <leader>ev <esc>:tabe $MYVIMRC<cr>
