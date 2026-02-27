@@ -390,7 +390,8 @@ return {
 		"mason-org/mason-lspconfig.nvim",
 		opts = {
 			-- fix after closing: https://github.com/folke/lazydev.nvim/issues/136
-			ensure_installed = { "lua_ls@3.16.4", "rust_analyzer", "clangd", "pylsp", "cmake", "gopls", "zls" },
+			-- ensure_installed = { "lua_ls@3.16.4", "rust_analyzer", "clangd", "pylsp", "cmake", "gopls", "zls" },
+			ensure_installed = { "lua_ls@3.16.4", "rust_analyzer", "gopls" },
 		},
 		dependencies = {
 			{ "mason-org/mason.nvim", opts = {} },
@@ -545,7 +546,7 @@ return {
 				formatters_by_ft = {
 					lua = { "stylua" },
 					-- Conform will run multiple formatters sequentially
-					python = { "isort", "black" },
+					-- python = { "isort", "black" },
 					-- You can customize some of the format options for the filetype (:help conform.format)
 					rust = { "rustfmt", lsp_format = "fallback" },
 					-- Conform will run the first available formatter
